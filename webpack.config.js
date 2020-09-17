@@ -3,7 +3,7 @@
  * @LastEditors: 卢建
  * @Description: webpack(配置项)
  * @Date: 2020-09-14 22:45:51
- * @LastEditTime: 2020-09-15 01:18:13
+ * @LastEditTime: 2020-09-18 00:24:36
  */
 "use strict"
 
@@ -25,5 +25,13 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html')
         })
-    ]
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.((c|le|sc)ss)|styl$/,
+                use: ['style-loader', 'css-loader', 'less-loader', 'sass-loader', 'stylus-loader']
+            }
+        ]
+    }
 }
