@@ -3,7 +3,7 @@
  * @LastEditors: 卢建
  * @Description: webpack(配置项)
  * @Date: 2020-09-14 22:45:51
- * @LastEditTime: 2020-09-18 00:24:36
+ * @LastEditTime: 2020-09-19 01:46:00
  */
 "use strict"
 
@@ -30,7 +30,12 @@ module.exports = {
         rules: [
             {
                 test: /\.((c|le|sc)ss)|styl$/,
-                use: ['style-loader', 'css-loader', 'less-loader', 'sass-loader', 'stylus-loader']
+                use: ['style-loader', 'css-loader', "postcss-loader", 'less-loader', 'sass-loader', 'stylus-loader']
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: "babel-loader"
             }
         ]
     }
