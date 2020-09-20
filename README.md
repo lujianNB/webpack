@@ -105,3 +105,30 @@
 ###         "@babel/plugin-transform-runtime"
 ###     ]
 ### }
+## 9.安装file-loader,url-loader处理图片和字体问题
+### 在webpack.config.js中添加
+### module: {
+###     rules: [
+###         {
+###             test: /\.(jpg|png|svg|jpeg|gif)$/,
+###             use: {
+###                 loader: 'url-loader',
+###                 options: {
+###                     outputPath: 'images/',
+###                     name: '[name].[ext]',
+###                     limit: 10 * 1024
+###                 }
+###             }
+###         },
+###         {
+###             test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+###             use: {
+###                 loader: 'url-loader',
+###                 options: {
+###                     limit: 10000,
+###                     name:'[name]-[hash:5].min.[ext]'
+###                 }
+###             }
+###         }
+###     ]
+### }

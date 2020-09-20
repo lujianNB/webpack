@@ -3,7 +3,7 @@
  * @LastEditors: 卢建
  * @Description: webpack(配置项)
  * @Date: 2020-09-14 22:45:51
- * @LastEditTime: 2020-09-19 01:46:00
+ * @LastEditTime: 2020-09-20 23:59:49
  */
 "use strict"
 
@@ -11,6 +11,7 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { options } = require('less')
 module.exports = {
     mode: 'development',
     entry: {
@@ -36,6 +37,27 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: "babel-loader"
+            },
+            {
+                test: /\.(jpg|png|svg|jpeg|gif)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        outputPath: 'images/',
+                        name: '[name].[ext]',
+                        limit: 10 * 1024
+                    }
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10000,
+                        name:'[name]-[hash:5].min.[ext]'
+                    }
+                }
             }
         ]
     }
